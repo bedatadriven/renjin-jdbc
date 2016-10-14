@@ -1,8 +1,0 @@
-org/renjin/JDBC/columns/IntColumnBuilder.class
-org/renjin/JDBC/columns/DateStringColumnBuilder.class
-org/renjin/JDBC/JDBCUtils.class
-org/renjin/JDBC/columns/LogicalColumnBuilder.class
-org/renjin/JDBC/columns/StringColumnBuilder.class
-org/renjin/JDBC/columns/BigIntColumnBuilder.class
-org/renjin/JDBC/columns/DoubleColumnBuilder.class
-org/renjin/JDBC/columns/ColumnBuilder.class
