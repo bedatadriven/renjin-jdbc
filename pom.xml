@@ -70,6 +70,13 @@
         </pluginRepository>
     </pluginRepositories>
 
+  <distributionManagement>
+    <repository>
+      <id>renjin-packages</id>
+      <name>Renjin CI Repository</name>
+      <url>http://nexus.bedatadriven.com/content/repositories/renjin-packages</url>
+    </repository>
+  </distributionManagement>
 
   <build>
     <plugins>
