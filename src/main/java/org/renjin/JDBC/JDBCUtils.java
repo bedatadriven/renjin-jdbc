@@ -17,6 +17,8 @@ import org.renjin.sexp.ListVector;
 import org.renjin.sexp.StringVector;
 
 public class JDBCUtils {
+  
+  static String [] tableTypes =  new String[]{"TABLE"};
 
   public static boolean hasCompleted(ResultSet rs) {
     try {
@@ -25,13 +27,30 @@ public class JDBCUtils {
       return false;
     }
   }
-
+  
+  /**
+   * Retrieves the name of the tables available in the given connection.
+   *
+   * @param con
+   * @return
+   */
   public static StringVector getTables(Connection con) {
+    return getTables(con, tableTypes);
+  }
+
+   /**
+    * Retrieves the name of the tables available in the given connection,
+    * according a list of table types
+    *
+    * @param con
+    * @param tableTypes
+    * @return
+    */
+  public static StringVector getTables(Connection con, String [] tableTypes) {
     try {
       StringVector.Builder sb = new StringVector.Builder();
       DatabaseMetaData dbm = con.getMetaData();
-      String[] types = { "TABLE" };
-      ResultSet rsm = dbm.getTables(con.getCatalog(), null, null, types);
+      ResultSet rsm = dbm.getTables(con.getCatalog(), null, null, tableTypes);
 
       while (rsm.next()) {
         sb.add(rsm.getString("TABLE_NAME"));
@@ -43,6 +62,13 @@ public class JDBCUtils {
     }
   }
 
+   /**
+     * List the name of the columns for a table
+     *
+     * @param con
+     * @param table
+     * @return
+     */
   public static StringVector getColumns(Connection con, String table) {
     try {
       StringVector.Builder sb = new StringVector.Builder();
@@ -66,6 +92,12 @@ public class JDBCUtils {
     }
   }
 
+   /**
+     * Returns the name and the SQL data type for each column of a table
+     *
+     * @param rs
+     * @return
+     */
   public static ListVector columnInfo(ResultSet rs) {
     try {
       ListVector.Builder tv = new ListVector.Builder();
